@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/orderFragment"
+        android:title="My Order"
+        android:icon="@drawable/shoppingbasket"
+        />
+    <item
+        android:id="@+id/myProductFragment"
+        android:title="My Product"
+        android:icon="@drawable/listingorder"
+        />
+    <item
+        android:id="@+id/reportFragment"
+        android:title="Report"
+        android:icon="@drawable/reportreceipt"
+        />
+    <item
+        android:id="@+id/historyFragment"
+        android:title="History"
+        android:icon="@drawable/ic_history_black_24dp"
+        />
+    <item
+        android:id="@+id/profileFragment"
+        android:title="Profile"
+        android:icon="@drawable/accountprofile"
+        />
+
+</menu>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.netmart.netmartseller">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/logolocations"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/logolocations"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".HistoryActivity"></activity>
+        <activity android:name=".MyProductActivity" />
+        <activity android:name=".ReportActivity" />
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".OrderListActivity" />
+        <activity android:name=".SellerOrderActivity" />
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".SellerProfileActivity" />
+        <activity android:name=".SellerProductManageActivity" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
