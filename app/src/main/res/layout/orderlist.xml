@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/dateOrderId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:text="5th June 2020"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:fontFamily="@font/montserrat"
+            android:textColor="@color/Black"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+
+
+
+            <LinearLayout
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:id="@+id/orderNameId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="25sp"
+                    android:text="D1543"
+                    android:fontFamily="@font/montserrat"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="13dp"
+                    android:textColor="@color/splashname"/>
+
+                <TextView
+                    android:id="@+id/orderDelivererName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Deliverer Name"
+                    android:layout_marginTop="15dp"
+                    android:paddingLeft="10dp"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/montserrat"
+                    android:textStyle="bold"
+                    android:textColor="@color/Gray"/>
+
+                <TextView
+                    android:id="@+id/orderItemlist"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="15 Items "
+                    android:layout_marginTop="15dp"
+                    android:paddingLeft="10dp"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/montserrat"
+                    android:textStyle="bold"
+                    android:textColor="@color/splashname"/>
+
+                <TextView
+                    android:id="@+id/orderTimeArrival"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="15 Minutes Pack"
+                    android:paddingLeft="10dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/montserrat"
+                    android:textStyle="bold"
+                    android:textColor="@color/splashname"/>
+
+
+
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/timeorder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="4.30 PM"
+                    android:fontFamily="@font/montserrat"
+                    android:textSize="20sp"
+                    android:gravity="center"/>
+
+                <ImageView
+                    android:id="@+id/orderDetailBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center|end"
+                    android:layout_marginTop="20dp"
+                    android:src="@drawable/right_going" />
+
+
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/Gray"
+            />
+
+
+    </LinearLayout>
+
+</RelativeLayout>
