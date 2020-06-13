@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     String userId;
     private FirebaseFirestore fstore;
+    FirebaseAuth.AuthStateListener mAuthListener;
 
 
 //    TextView textView;
@@ -66,40 +67,18 @@ public class MainActivity extends AppCompatActivity {
                 signIn();
             }
         });
-//
-//        bottomtabmenu = findViewById(R.id.bottomtabmenu);
-//        bottomtabmenu.setSelectedItemId(R.id.orderFragment);
-//
-//        bottomtabmenu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-//            @Override
-//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//                switch (item.getItemId()){
-//                    case R.id.orderFragment:
-//                        startActivity(new Intent(getApplicationContext(), OrderListActivity.class));
-//                        overridePendingTransition(0,0);
-//                        return true;
-//                    case R.id.myProductFragment:
-//                        startActivity(new Intent(getApplicationContext(), MyProductActivity.class));
-//                        overridePendingTransition(0,0);
-//                        return true;
-//                    case R.id.reportFragment:
-//                        startActivity(new Intent(getApplicationContext(), ReportActivity.class));
-//                        overridePendingTransition(0,0);
-//                        return true;
-//                    case R.id.historyFragment:
-//                        startActivity(new Intent(getApplicationContext(), HistoryActivity.class));
-//                        overridePendingTransition(0,0);
-//                        return true;
-//                    case R.id.profileFragment:
-//                        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
-//                        overridePendingTransition(0,0);
-//                        return true;
-//                }
-//                return false;
-//            }
-//        });
 
-       // textView = findViewById(R.id.texview);
+        //listen to current user..so user can easily logged in without going to login all the time when open the app
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                if(firebaseAuth.getCurrentUser() != null){
+                        startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+                }
+            }
+        };
+
+
     }
 
     @Override
@@ -135,12 +114,7 @@ public class MainActivity extends AppCompatActivity {
                     FirebaseUser user = mAuth.getCurrentUser();
                     Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
                     startActivity(intent);
-                    //updateUI(user);
-                    //DocumentReference documentReference = fstore.collection("sellers").document(userId);
-                    //Map<String, Object> seller =new HashMap<>();
-                    //seller.put("fname", fullname);
-                    //Intent intent = new Intent(getApplicationContext(),ProfileActivity.class);
-                    //startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+
                 } else {
                     // If sign in fails, display a message to the user.
                     Toast.makeText(MainActivity.this, "Sorry auth failed.", Toast.LENGTH_SHORT).show();
@@ -152,45 +126,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-//    //update data on user
-//    private void updateUI(FirebaseUser user) {
-//        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
-//        if(account !=  null){
-//            final String personName = account.getDisplayName();
-//            String personGivenName = account.getGivenName();
-//            //String personGivenName = account.getGivenName();
-//            String personFamilyName = account.getFamilyName();
-//            final String personEmail = account.getEmail();
-//            final String personId = account.getId();
-//            final Uri personPhoto = account.getPhotoUrl();
-//
-//            Picasso.get().load(personPhoto).into();
-//
-//            Toast.makeText(MainActivity.this,personName + personEmail ,Toast.LENGTH_SHORT).show();
-//
-//            //store the google login data into firestore
-//            Map<String, Object> seller = new HashMap<>();
-//            seller.put("ID", personId);
-//            seller.put("Username", personName);
-//            seller.put("Email", personEmail);
-//
-//            fstore.collection("Sellers").document(userId).set(seller)
-//            //DocumentReference documentReference = fstore.collection("sellers").document(String.valueOf(user));
-////            Map<String, Object> seller = new HashMap<>();
-////            seller.put("ID", personId);
-////            seller.put("Username", personName);
-////            seller.put("Email", personEmail);
-////            seller.put("Profile Picture", personPhoto);
-////            documentReference.set(seller).addOnSuccessListener(new OnSuccessListener<Void>() {
-////                @Override
-////                public void onSuccess(Void aVoid) {
-////                    Toast.makeText(MainActivity.this,personId + personName + personEmail + personPhoto, Toast.LENGTH_SHORT).show();
-////                }
-////            });
-////            startActivity(new Intent(getApplicationContext(), OrderListActivity.class));
-//        }
-//
-//    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
 
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();

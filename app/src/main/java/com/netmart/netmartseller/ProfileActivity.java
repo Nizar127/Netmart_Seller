@@ -62,6 +62,7 @@ public class ProfileActivity extends AppCompatActivity {
     CircleImageView changesellerpic;
     ProgressDialog progressDialog;
     CollectionReference profileRef;
+    FirebaseAuth.AuthStateListener mAuthListener;
     //CollectionReference sellerInfo;
     //DocumentReference userProf;
     ArrayList<Profile> mProfile = new ArrayList<>();
@@ -89,6 +90,8 @@ public class ProfileActivity extends AppCompatActivity {
 
         fAuth = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
+
+
         //sellerInfo = fstore.collection("Seller");
         //userProf = fstore.document()
 
@@ -211,25 +214,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        Query sellerInfoQuery = sellerInfo.whereEqualTo("ID", UserId);
-//        sellerInfoQuery.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                if(task.isSuccessful()){
-//                    for(QueryDocumentSnapshot document: task.getResult()){
-//                        Profile profile = document.toObject(Profile.class);
-//                        mProfile.add(profile);
-//                    }
-//                }else{
-//                    Toast.makeText(ProfileActivity.this, "Query Failed. Check logs", Toast.LENGTH_LONG).show();
-//                }
-//            }
-//        });
-//
-//    }
+
 
     private void UserProfile() {
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
@@ -266,6 +251,20 @@ public class ProfileActivity extends AppCompatActivity {
                    // progressDialog.dismiss();
                 }
             });
+
+            //change the document id into sellername
+//            const firestore = firebase.firestore();
+//// get the data from 'name@xxx.com'
+//            firestore.collection("users").doc("name@xxx.com").get().then(function (doc) {
+//                if (doc && doc.exists) {
+//                    var data = doc.data();
+//                    // saves the data to 'name'
+//                    firestore.collection("users").doc("name").set(data).then({
+//                            // deletes the old document
+//                            firestore.collection("users").doc("name@xxx.com").delete();
+//        });
+//                }
+//            });
 
 
 

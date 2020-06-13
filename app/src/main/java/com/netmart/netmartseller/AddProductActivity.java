@@ -222,107 +222,52 @@ public class AddProductActivity extends AppCompatActivity {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             compressed.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
             byte[] thumbData = byteArrayOutputStream.toByteArray();
-            UploadTask image_path = prodImgRef.child("user_image").child(user_id + ".jpg").putBytes(thumbData);
-            image_path.addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+            UploadTask image_path = prodImgRef.child("productImage").child(user_id + ".jpg").putBytes(thumbData);
+            image_path.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
-                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                    if(task.isSuccessful()){
-                        saveProduct(task,name,desc,price,productcategory,productQuantity);
-                    }else {
-                        String error = task.getException().getMessage();
-                        Toast.makeText(AddProductActivity.this,"(IMAGE Error) : " + error, Toast.LENGTH_LONG).show();
-                        loadingBar.dismiss();
-                    }
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        if(taskSnapshot.getMetadata() != null){
+                            if(taskSnapshot.getMetadata().getReference() != null){
+                                Task<Uri> result = taskSnapshot.getStorage().getDownloadUrl();
+                                result.addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+                                        imgUri = uri;
+                                        //imageUrl.equals(prodImgRef);
+                                        saveProduct(name,desc,price,productcategory,productQuantity);
+                                    }
+                                });
+                            }
+
+                        }
                 }
             });
-
-
-
-            // final StorageReference filePath = prodImgRef.child(imgUri.getLastPathSegment() + productRandomKey + ".jpg");
-
-       // final UploadTask uploadTask = filePath.putFile(imgUri);
-
-//        uploadTask.addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception e) {
-//                String message = e.toString();
-//                Toast.makeText(AddProductActivity.this, "Error: " + message, Toast.LENGTH_SHORT).show();
-//                loadingBar.dismiss();
-//            }
-//        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//            @Override
-//            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//                Toast.makeText(AddProductActivity.this, "Product Image uploaded", Toast.LENGTH_SHORT).show();
-//
-//                Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-//                    @Override
-//                    public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-//                        if (!task.isSuccessful()) {
-//                            throw task.getException();
-//                        }
-//
-//                        downloadImgUrl = filePath.getDownloadUrl().toString();
-//                        return filePath.getDownloadUrl();
+//            image_path.addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+//                @Override
+//                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+//                    if(task.isSuccessful()){
+////                        imgUri = task.getResult().getMetadata().getReference().getDownloadUrl().getResult();
+////                        saveProduct(task,name,desc,price,productcategory,productQuantity);
+//                    }else {
+//                        String error = task.getException().getMessage();
+//                        Toast.makeText(AddProductActivity.this,"(IMAGE Error) : " + error, Toast.LENGTH_LONG).show();
+//                        loadingBar.dismiss();
 //                    }
-//                }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<Uri> task) {
-//                        if (task.isSuccessful()) {
-//                            downloadImgUrl = task.getResult().toString();
-//
-//                            Toast.makeText(AddProductActivity.this, "Product image url received", Toast.LENGTH_SHORT).show();
-//
-//                            SaveProductInfoToDatabase();
-//                        }
-//                    }
-//                });
-//            }
-//        });
-    }
-
-    //save to firestore
-//    private void SaveProductInfoToDatabase() {
-//        HashMap<String, Object> productMap = new HashMap<>();
-//        productMap.put("Pid", productRandomKey);
-//        productMap.put("date", saveCurrentDate);
-//        productMap.put("time", saveCurrentTime);
-//        productMap.put("image", downloadImgUrl);
-//        productMap.put("category", productcategory);
-//        productMap.put("name", name);
-//        productMap.put("nameLower", name.toLowerCase());
-//        productMap.put("description", desc);
-//        productMap.put("price", price);
-//
-//        //try add(new Product(time, image, category, name,
-//
-//        DB.collection("Products").document(user_id).set(productMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-//            @Override
-//            public void onComplete(@NonNull Task<Void> task) {
-//                if (task.isSuccessful()) {
-//
-//                    loadingBar.dismiss();
-//                    Toast.makeText(AddProductActivity.this, "User Data is Stored Successfully", Toast.LENGTH_LONG).show();
-//                    Intent mainIntent = new Intent(AddProductActivity.this, MyProductActivity.class);
-//                    startActivity(mainIntent);
-//                    finish();
-//                } else {
-//                    String error = task.getException().getMessage();
-//                    Toast.makeText(AddProductActivity.this, "(FIRESTORE Error) : " + error, Toast.LENGTH_LONG).show();
 //                }
-//                loadingBar.dismiss();
-//            }
-//
-//        });
-//    }
+//            });
 
+
+
+    }
 
 
 }
 
-    private void saveProduct(Task<UploadTask.TaskSnapshot> task, String name, String desc, String price, String productcategory, String productQuantity) {
+    private void saveProduct( String name, String desc, String price, String productcategory, String productQuantity) {
         Map<String, String> productData = new HashMap<>();
         productData.put("Pid", productRandomKey);
         productData.put("name",name);
+        productData.put("sellername", user_id);
         productData.put("description", desc);
         productData.put("price", price);
         productData.put("category",productcategory);
@@ -345,21 +290,6 @@ public class AddProductActivity extends AppCompatActivity {
             }
         });
 
-//        DB.collection("Products").document(user_id).add(productRandomKey,name,desc,price,imgUri).addOnCompleteListener(new OnCompleteListener<Void>() {
-//            @Override
-//            public void onComplete(@NonNull Task<Void> task) {
-//                    if(task.isSuccessful()){
-//                        Toast.makeText(AddProductActivity.this, "User Data is Stored Successfully", Toast.LENGTH_LONG).show();
-//                        Intent mainIntent = new Intent(AddProductActivity.this, MyProductActivity.class);
-//                        startActivity(mainIntent);
-//                        finish();
-//                    } else{
-//                        String error = task.getException().getMessage();
-//                        Toast.makeText(AddProductActivity.this, "(FIRESTORE Error) : " + error, Toast.LENGTH_LONG).show();
-//
-//                    }
-//                    loadingBar.dismiss();
-//            }
-//        });
+
     }
 }

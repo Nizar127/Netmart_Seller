@@ -2,7 +2,7 @@ package com.netmart.netmartseller.Model;
 
 public class Products {
 
-    private String name, qty, description, price, image, category, pid, date, time, nameLower;
+    private String name, qty, description, price, image, category, pid, date, time, nameLower, sellerid, sellerName;
     //private int qty;
     private Boolean status;
 
@@ -10,7 +10,7 @@ public class Products {
 
     }
 
-    public Products(String name, String description, String price, String image, String category, String pid, String date, String time, String nameLower, String qty, Boolean status) {
+    public Products(String name, String description, String price, String image, String category, String pid, String date, String time, String nameLower, String qty, String sellerid, String sellerName, Boolean status) {
         this.name = name;
         this.description = description;
         this.price = price;
@@ -21,8 +21,11 @@ public class Products {
         this.time = time;
         this.nameLower = nameLower;
         this.qty = qty;
+        this.sellerid = sellerid;
+        this.sellerName = sellerName;
         this.status = status;
     }
+
 
     public String getName() {
         return name;
@@ -46,6 +49,22 @@ public class Products {
 
     public void setQty(String qty) {
         this.qty = qty;
+    }
+
+    public String getSellerid() {
+        return sellerid;
+    }
+
+    public void setSellerid(String sellerid) {
+        this.sellerid = sellerid;
+    }
+
+    public String getSellerName() {
+        return sellerName;
+    }
+
+    public void setSellerName(String sellerName) {
+        this.sellerName = sellerName;
     }
 
     public String getPrice() {
