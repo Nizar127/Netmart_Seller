@@ -63,7 +63,7 @@ public class EditProductActivity extends AppCompatActivity {
 
                     @Override
                     protected void onBindViewHolder(@NonNull EditProductsViewHolder holder, final int position , @NonNull Products model) {
-                        Picasso.get().load(model.getImage()).into(holder.editImgView);
+                        Picasso.get().load(model.getProductImage()).into(holder.editImgView);
                         holder.editProdName.setText(model.getName());
                         holder.editProdDesc.setText(model.getDescription());
                         holder.editProdPrice.setText(model.getPrice());

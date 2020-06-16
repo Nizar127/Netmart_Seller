@@ -8,11 +8,20 @@
     android:background="@color/GhostWhite"
     tools:context=".MyProductActivity">
 
+
+
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="match_parent">
 
-        >
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swiperToRefresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
         <LinearLayout
             android:id="@+id/recyclerProductList"
             android:layout_width="match_parent"
@@ -29,23 +38,25 @@
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"/>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/productList"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
 
 
-            </androidx.recyclerview.widget.RecyclerView>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/productList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+
+
+                </androidx.recyclerview.widget.RecyclerView>
+
 
         </LinearLayout>
-
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <LinearLayout
             android:id="@+id/floatingbtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/recyclerProductList"
             android:layout_alignParentBottom="true"
             android:layout_marginTop="307dp"
             android:layout_marginBottom="61dp"

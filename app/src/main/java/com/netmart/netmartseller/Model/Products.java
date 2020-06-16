@@ -2,7 +2,7 @@ package com.netmart.netmartseller.Model;
 
 public class Products {
 
-    private String name, qty, description, price, image, category, pid, date, time, nameLower, sellerid, sellerName;
+    private String name, qty, description, price, productImage, category, Pid, date, time, nameLower, sellerid, sellerName;
     //private int qty;
     private Boolean status;
 
@@ -10,22 +10,21 @@ public class Products {
 
     }
 
-    public Products(String name, String description, String price, String image, String category, String pid, String date, String time, String nameLower, String qty, String sellerid, String sellerName, Boolean status) {
+    public Products(String name, String qty, String description, String price, String productImage, String category, String pid, String date, String time, String nameLower, String sellerid, String sellerName, Boolean status) {
         this.name = name;
+        this.qty = qty;
         this.description = description;
         this.price = price;
-        this.image = image;
+        this.productImage = productImage;
         this.category = category;
-        this.pid = pid;
+        Pid = pid;
         this.date = date;
         this.time = time;
         this.nameLower = nameLower;
-        this.qty = qty;
         this.sellerid = sellerid;
         this.sellerName = sellerName;
         this.status = status;
     }
-
 
     public String getName() {
         return name;
@@ -33,14 +32,6 @@ public class Products {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getQty() {
@@ -51,20 +42,12 @@ public class Products {
         this.qty = qty;
     }
 
-    public String getSellerid() {
-        return sellerid;
+    public String getDescription() {
+        return description;
     }
 
-    public void setSellerid(String sellerid) {
-        this.sellerid = sellerid;
-    }
-
-    public String getSellerName() {
-        return sellerName;
-    }
-
-    public void setSellerName(String sellerName) {
-        this.sellerName = sellerName;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getPrice() {
@@ -75,12 +58,12 @@ public class Products {
         this.price = price;
     }
 
-    public String getImage() {
-        return image;
+    public String getProductImage() {
+        return productImage;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setProductImage(String productImage) {
+        this.productImage = productImage;
     }
 
     public String getCategory() {
@@ -92,11 +75,11 @@ public class Products {
     }
 
     public String getPid() {
-        return pid;
+        return Pid;
     }
 
     public void setPid(String pid) {
-        this.pid = pid;
+        Pid = pid;
     }
 
     public String getDate() {
@@ -123,6 +106,21 @@ public class Products {
         this.nameLower = nameLower;
     }
 
+    public String getSellerid() {
+        return sellerid;
+    }
+
+    public void setSellerid(String sellerid) {
+        this.sellerid = sellerid;
+    }
+
+    public String getSellerName() {
+        return sellerName;
+    }
+
+    public void setSellerName(String sellerName) {
+        this.sellerName = sellerName;
+    }
 
     public Boolean getStatus() {
         return status;

@@ -12,7 +12,7 @@ import com.netmart.netmartseller.R;
 public class ProductListViewHolder extends RecyclerView.ViewHolder {
 
     public ImageView product_pic;
-    public TextView productName, productCategory, productQty, productStatus, productPrice;
+    public TextView productName, productCategory, productQty, productPrice;
 
 
     public ProductListViewHolder(@NonNull View itemView) {
@@ -24,5 +24,14 @@ public class ProductListViewHolder extends RecyclerView.ViewHolder {
             productCategory = itemView.findViewById(R.id.productCategory);
             productQty = itemView.findViewById(R.id.productQty);
             productPrice = itemView.findViewById(R.id.productPrice);
+
+//            itemView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//
+//                }
+//            });
     }
+
+
 }

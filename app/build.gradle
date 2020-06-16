@@ -45,6 +45,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-storage:19.1.1'
     implementation 'com.google.firebase:firebase-invites:17.0.0'
     implementation 'com.google.firebase:firebase-ml-vision:24.0.3'
+    implementation "com.firebaseui:firebase-ui-auth:6.2.0"
     implementation 'com.firebaseui:firebase-ui-database:6.2.0' //To use firebase recycler adapter
     implementation 'com.firebaseui:firebase-ui-firestore:6.2.1'
     implementation 'io.paperdb:paperdb:2.6'
